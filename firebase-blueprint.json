@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "siteContent": {
+      "title": "Site Content",
+      "description": "General content for the landing page sections",
+      "type": "object",
+      "properties": {
+        "sectionId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["sectionId", "title"]
+    },
+    "layouts": {
+      "title": "Unit Layouts",
+      "description": "Details for different unit types",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string", "enum": ["Jewel", "SO"] },
+        "unitType": { "type": "string" },
+        "size": { "type": "string" },
+        "psf": { "type": "string" },
+        "price": { "type": "string" },
+        "floorPlanUrl": { "type": "string", "format": "uri" },
+        "virtualTourUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["unitType", "size", "price", "category"]
+    },
+    "gallery": {
+      "title": "Gallery Image",
+      "description": "Images for the gallery section",
+      "type": "object",
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "caption": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["url"]
+    }
+  },
+  "firestore": {
+    "/content/{contentId}": {
+      "schema": "siteContent",
+      "description": "Site-wide content sections"
+    },
+    "/layouts/{layoutId}": {
+      "schema": "layouts",
+      "description": "Unit layout specifications"
+    },
+    "/gallery/{imageId}": {
+      "schema": "gallery",
+      "description": "Gallery images"
+    }
+  }
+}

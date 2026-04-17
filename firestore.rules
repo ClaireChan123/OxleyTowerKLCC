@@ -1,0 +1,74 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: content
+    // Fields: sectionId (string), title (string), description (string), imageUrl (string)
+    //
+    // Collection: layouts
+    // Fields: unitType (string), size (string), psf (string), price (string), floorPlanUrl (string), virtualTourUrl (string)
+    //
+    // Collection: gallery
+    // Fields: url (string), caption (string), order (number)
+    //
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+             request.auth.token.email == "clairee0726@gmail.com" && 
+             request.auth.token.email_verified == true;
+    }
+
+    function isValidContent(data) {
+      return data.sectionId is string && data.sectionId.size() > 0 && data.sectionId.size() < 100 &&
+             data.title is string && data.title.size() > 0 && data.title.size() < 200 &&
+             (!('description' in data) || (data.description is string && data.description.size() < 2000)) &&
+             (!('imageUrl' in data) || (data.imageUrl is string && data.imageUrl.size() < 1000));
+    }
+
+    function isValidLayout(data) {
+      return data.unitType is string && data.unitType.size() > 0 && data.unitType.size() < 100 &&
+             data.size is string && data.size.size() < 50 &&
+             data.price is string && data.price.size() < 50 &&
+             data.category in ['Jewel', 'SO'] &&
+             (!('id' in data) || (data.id is string && data.id.size() < 100)) &&
+             (!('psf' in data) || (data.psf is string && data.psf.size() < 50)) &&
+             (!('floorPlanUrl' in data) || (data.floorPlanUrl is string && data.floorPlanUrl.size() < 1000)) &&
+             (!('virtualTourUrl' in data) || (data.virtualTourUrl is string && data.virtualTourUrl.size() < 1000));
+    }
+
+    function isValidGallery(data) {
+      return data.url is string && data.url.size() > 0 && data.url.size() < 1000 &&
+             (!('caption' in data) || (data.caption is string && data.caption.size() < 500)) &&
+             (!('order' in data) || data.order is number);
+    }
+
+    // Rules
+    match /content/{contentId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidContent(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    match /layouts/{layoutId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidLayout(request.resource.data) && request.resource.data.category != 'SO';
+      allow update: if isAdmin() && isValidLayout(request.resource.data) && resource.data.category != 'SO';
+      allow delete: if isAdmin() && resource.data.category != 'SO';
+    }
+
+    match /gallery/{imageId} {
+      allow read: if true;
+      allow create, update: if isAdmin() && isValidGallery(request.resource.data);
+      allow delete: if isAdmin();
+    }
+  }
+}
