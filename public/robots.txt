@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-# UPDATE THIS URL after you connect your Hostinger domain in Vercel settings
-# Sitemap: https://yourcustomdomain.com/sitemap.xml
-Sitemap: https://ais-pre-4usslmuq7ubtp7t6rw64ti-313477230562.asia-southeast1.run.app/sitemap.xml
+Sitemap: https://oxleytowers.my/sitemap.xml
