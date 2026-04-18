@@ -79,11 +79,11 @@ interface GalleryImage {
 const TRANSLATIONS = {
   en: {
     nav: {
-      overview: 'Overview',
-      location: 'Location',
-      layouts: 'Layouts',
-      gallery: 'Gallery',
-      contact: 'Contact',
+      overview: 'Project Overview',
+      location: 'Prime Location',
+      layouts: 'Unit Layouts',
+      gallery: 'Luxury Gallery',
+      contact: 'Enquire Now',
       admin: 'Admin',
       logout: 'Logout'
     },
@@ -182,10 +182,10 @@ const TRANSLATIONS = {
   cn: {
     nav: {
       overview: '项目概览',
-      location: '地理位置',
-      layouts: '户型设计',
-      gallery: '实景图库',
-      contact: '联系我们',
+      location: '核心地段',
+      layouts: '精致户型',
+      gallery: '奢华图库',
+      contact: '立即咨询',
       admin: '管理员',
       logout: '退出登录'
     },
