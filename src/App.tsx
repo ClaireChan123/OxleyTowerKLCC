@@ -156,6 +156,30 @@ const TRANSLATIONS = {
       bulk_upload: 'Bulk Upload',
       add_image: 'Add Image'
     },
+    specs: {
+      badge: 'Details',
+      title: 'Project Specifications',
+      items: [
+        { label: 'Developer', value: 'Oxley Holdings Limited' },
+        { label: 'Tenure', value: 'Freehold' },
+        { label: 'Total Towers', value: '3 Signature Towers' },
+        { label: 'Completion', value: 'Expected Q4 2024 / Q1 2025' },
+        { label: 'Location', value: 'Jalan Ampang, KLCC, Kuala Lumpur' },
+        { label: 'Architecture', value: 'Veritas Architects' },
+        { label: 'Hotel Brands', value: 'SO/ Hotel, The Langham' },
+        { label: 'Land Area', value: '3.11 Acres' }
+      ]
+    },
+    faq: {
+      badge: 'Knowledge',
+      title: 'Frequently Asked Questions',
+      items: [
+        { q: 'Is Oxley Towers KLCC a freehold property?', a: 'Yes, Oxley Towers KLCC is a rare and prestigious freehold development in the heart of Kuala Lumpur City Centre.' },
+        { q: 'What is the "Crown Jewel" status in Jewel Residence?', a: 'Jewel Residence is managed by the world-renowned Pavilion Group, offering residents elite hospitality services and significant capital appreciation potential.' },
+        { q: 'Where exactly is the location relative to KLCC?', a: 'Oxley Towers is situated on Jalan Ampang, approximately 300 meters from Suria KLCC and the Petronas Twin Towers.' },
+        { q: 'Who is the developer behind this iconic project?', a: 'The project is developed by Oxley Holdings Limited, a Singapore-listed international real estate developer.' }
+      ]
+    },
     contact: {
       badge: 'Connect',
       title: 'Your Private Viewing Awaits',
@@ -257,6 +281,30 @@ const TRANSLATIONS = {
       title: '实景图库',
       bulk_upload: '批量上传',
       add_image: '添加图片'
+    },
+    specs: {
+      badge: '项目详情',
+      title: '项目规格',
+      items: [
+        { label: '开发商', value: 'Oxley Holdings Limited' },
+        { label: '产权', value: '永久产权 (Freehold)' },
+        { label: '建筑数量', value: '3 栋标志性塔楼' },
+        { label: '预计竣工', value: '预计 2024 年第四季度 / 2025 年第一季度' },
+        { label: '地点', value: '吉隆坡 KLCC, Jalan Ampang' },
+        { label: '建筑设计', value: 'Veritas Architects' },
+        { label: '酒店品牌', value: 'SO/ Hotel, The Langham (朗廷酒店)' },
+        { label: '占地面积', value: '3.11 英亩' }
+      ]
+    },
+    faq: {
+      badge: '常见问题',
+      title: '为您解答',
+      items: [
+        { q: 'Oxley Towers KLCC 是永久产权吗？', a: '是的，Oxley Towers KLCC 是 吉隆坡市中心 (KLCC) 核心地带罕见且负盛名的永久产权项目。' },
+        { q: 'Jewel Residence 的“皇冠明珠”地位意味着什么？', a: 'Jewel Residence 由享誉全球的柏威年集团 (Pavilion Group) 管理，为业主提供顶级的款待服务和巨大的资产增值潜力。' },
+        { q: '该项目相对于 KLCC 的具体位置在哪里？', a: 'Oxley Towers 位于 Jalan Ampang，距离 Suria KLCC 和双子塔仅约 300 米。' },
+        { q: '该标志性项目背后的开发商是谁？', a: '该项目由 Oxley Holdings Limited 开发，这是一家在新加坡上市的国际房地产开发商。' }
+      ]
     },
     contact: {
       badge: '联系我们',
@@ -1027,7 +1075,7 @@ export default function App() {
         >
           <img 
             src={getSection('hero', '', '').imageUrl || "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&q=80&w=2000"} 
-            alt="KL Skyline" 
+            alt="Oxley Towers KLCC official exterior view and skyline" 
             className="w-full h-full object-cover object-top md:object-[center_15%]"
             referrerPolicy="no-referrer"
           />
@@ -1087,7 +1135,7 @@ export default function App() {
             >
               <img 
                 src={getSection('overview_so_v2', '', '').imageUrl || "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=1000"} 
-                alt="SO/ Residences" 
+                alt="Luxury bedroom and living space in SO/ Residences KLCC at Oxley Tower" 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
@@ -1196,7 +1244,7 @@ export default function App() {
             >
               <img 
                 src={getSection('overview_jewel_v2', '', '').imageUrl || "https://images.unsplash.com/photo-1600607687940-c52af036999b?auto=format&fit=crop&q=80&w=1000"} 
-                alt="Jewel Residence" 
+                alt="Exquisite design of Jewel Residence at Oxley Tower KLCC managed by Pavilion" 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />
@@ -1205,7 +1253,23 @@ export default function App() {
         </div>
       </section>
 
-      {/* --- Why Oxley --- */}
+      {/* --- Project Specifications --- */}
+      <section className="py-20 px-6 bg-zinc-900/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs uppercase tracking-widest text-white/40">{(t as any).specs.badge}</span>
+            <h2 className="text-4xl md:text-5xl font-serif">{(t as any).specs.title}</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 border border-white/10 p-8 md:p-12 rounded-3xl bg-black/40 backdrop-blur-sm">
+            {(t as any).specs.items.map((item: any, i: number) => (
+              <div key={i} className="flex justify-between items-center py-4 border-b border-white/5 last:border-0 md:even:border-b md:last:border-0">
+                <span className="text-[10px] uppercase tracking-widest text-white/40">{item.label}</span>
+                <span className="text-sm font-medium text-white/90 text-right">{item.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="py-20 bg-zinc-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-20 space-y-4">
@@ -1287,7 +1351,7 @@ export default function App() {
             <div className="relative h-[400px] md:h-[700px] rounded-3xl overflow-hidden group shadow-[0_30px_60px_-15px_rgba(0,0,0,0.7)] border border-white/5">
               <img 
                 src={getSection('location', '', '').imageUrl || "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&q=80&w=1000"} 
-                alt="Location Map" 
+                alt="Oxley Tower KLCC Location Map showing proximity to Petronas Twin Towers" 
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
@@ -1363,7 +1427,7 @@ export default function App() {
                 >
                   <img 
                     src={layout.floorPlanUrl} 
-                    alt={layout.unitType} 
+                    alt={`Floor plan for ${layout.unitType} at Oxley Towers KLCC - ${layout.size} sq.ft.`} 
                     className="w-full h-full object-contain p-8 transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
@@ -1472,6 +1536,29 @@ export default function App() {
                   )}
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FAQ Section --- */}
+      <section className="py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs uppercase tracking-widest text-white/40">{(t as any).faq.badge}</span>
+            <h2 className="text-4xl md:text-5xl font-serif">{(t as any).faq.title}</h2>
+          </div>
+          <div className="space-y-6">
+            {(t as any).faq.items.map((item: any, i: number) => (
+              <details key={i} className="group border border-white/5 bg-white/5 rounded-2xl overflow-hidden hover:bg-white/10 transition-colors">
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none">
+                  <h3 className="text-lg font-serif pr-6">{item.q}</h3>
+                  <ChevronRight size={20} className="text-white/30 group-open:rotate-90 transition-transform" />
+                </summary>
+                <div className="px-6 pb-6 text-white/60 text-sm leading-relaxed border-t border-white/5 pt-4">
+                  {item.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
